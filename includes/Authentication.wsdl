@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.inwebo.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.inwebo.com" xmlns:intf="http://service.inwebo.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.inwebo.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="authenticate">
+    <complexType>
+     <sequence>
+      <element name="userId" type="xsd:string"/>
+      <element name="serviceId" type="xsd:string"/>
+      <element name="token" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="authenticateResponse">
+    <complexType>
+     <sequence>
+      <element name="authenticateReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="authenticateWithIp">
+    <complexType>
+     <sequence>
+      <element name="userId" type="xsd:string"/>
+      <element name="serviceId" type="xsd:string"/>
+      <element name="token" type="xsd:string"/>
+      <element name="ip" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="authenticateWithIpResponse">
+    <complexType>
+     <sequence>
+      <element name="authenticateWithIpReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="authenticateWithIpResponse">
+
+      <wsdl:part element="impl:authenticateWithIpResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="authenticateResponse">
+
+      <wsdl:part element="impl:authenticateResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="authenticateWithIpRequest">
+
+      <wsdl:part element="impl:authenticateWithIp" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="authenticateRequest">
+
+      <wsdl:part element="impl:authenticate" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Authentication">
+
+      <wsdl:operation name="authenticate">
+
+         <wsdl:input message="impl:authenticateRequest" name="authenticateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:authenticateResponse" name="authenticateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authenticateWithIp">
+
+         <wsdl:input message="impl:authenticateWithIpRequest" name="authenticateWithIpRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:authenticateWithIpResponse" name="authenticateWithIpResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AuthenticationSoapBinding" type="impl:Authentication">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="authenticate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="authenticateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="authenticateResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="authenticateWithIp">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="authenticateWithIpRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="authenticateWithIpResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AuthenticationService">
+
+      <wsdl:port binding="impl:AuthenticationSoapBinding" name="Authentication">
+
+         <wsdlsoap:address location="https://api.myinwebo.com/services/Authentication"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

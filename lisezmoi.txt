@@ -1,0 +1,100 @@
+=== InWebo Login ===
+
+Contributors: Emmanuek NINET, In-Webo Technologies
+Tags: security, authentication, one-time-password
+Requires at least: 3.0
+Tested up to: 3.3.2
+Stable tag: 1.2.1
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Copyright (C) 2012 In-Webo Technologies
+
+Plugin d'authentification forte InWebo pour WordPress
+
+== Description ==
+
+In-Webo Technologies fournit une solution d'authentification forte en mode SaaS qui simplifie le processus d'authentification forte sans pour autant compromettre le niveau de sécurité.
+
+Vous éditez un site web comportant des "accès membres" ou des "comptes utilisateurs" protégés par un mot de passe, notre solution vous perme :
+- De remplacer l'authentification par mot de passe par une authentification multi-facteurs rendant l'accès utra-simple
+- De ne pas forcer l'utilisateur à mémoriser un identifiant ni un mot de passe supplémentaires, ni devoir utiliser les mécanismes de récupération de mot de passe pour accéder à votre service
+- De vous intégrer à un service de gestion d'accès gratuit, 'user-centric', multi-navigateurs et adapté à la mobilité
+
+== Prérequis ==
+
+Avant d'installer et de configurer le plugin, vous devez créer un certificat au format PEM pour l'API Web Services pour le service InWebo qui va gérer l'accès à votre site :
+ - Créez votre compte InWebo sur notre plateforme : https://www.myinwebo.com/signup/3
+ - Connectez-vous à la console d'administration pour générer le certificat (connexion administrateur requise)
+ - Enregistrez ce certificat sur votre poste de travail
+ - Notez également l'ID du service InWebo et la passphrase utilisée pour créer le certificat
+
+Pour plus d'information sur la gestion de votre compte et de votre service InWebo : http://developer.inwebo.com/fr/node/31
+
+== Installation ==
+
+ - Téléchargez le package du plugin
+ - Installez le comme vous le feriez pour tout plugin standard WordPress
+ - Activez le plugin
+ - Ajoutez le certificat InWebo dans le sous-répertoire includes du répertoire plugin inwebo, normalement [chemin-de-votre-installation-wordpress]/wp-content/plugins/inwebo/includes
+
+A cette étape le plugin est installé.
+
+== Configuration du plugin ==
+
+ - Ouvrez la page de gestion du plugin (il apparaît en tant que "In-Webo Login" dans la section "Réglages" du menu d'administration de WordPress)
+ - Ajoutez les informations requises dans le formulaire : nom du certificat (avec l'extension .crt), passphrase du certificat, et ID du service
+ - Activez le provisioning automatique des utilisateurs InWebo ou non (voir section 6)
+
+La configuration du plugin est terminée.
+
+== Activation de l'authentification InWebo pour les utilisateurs ==
+
+L'utilisation de l'authentification InWebo dans WordPress est définie au niveau de chaque utilisateur. Cela veut dire que vous pouvez choisir la méthode d'authentification pour chaque utilisateur (InWebo ou native WordPress). Pour activer l'authentification InWebo pour un utilisateur :
+
+ - Affichez les propriétés de cet utilisateur dans l'administration WordPress
+ - Cochez la case "User login is managed by In-Webo" à la fin de la page utilisateur
+
+Notes :
+ - Choisir l'authentification InWebo signifie que l'utilisateur devra s'authentifier avec InWebo. Il vous faudra donc l'ajouter en tant qu'utilisateur du service InWebo dans la console d'administration pour qu'il puisse se connecter au site.
+ - Il est recommandé de laisser l'authentification de l'utilisateur WordPress "admin" basée sur l'authentification WordPress
+
+== Auto-provisioning des utilisateurs ==
+
+Le plugin d'authentification InWebo pour WordPress permet l'auto-provisioning des utilisateurs dans WordPress.
+
+Si le provisioning automatique des utilisateurs InWebo est activé, cela signifie que tout utilisateur créé dans la console d'administration InWebo pourra se connecter au site, qu'il exite ou non dans la table des utilisateurs du site.
+ - Si l'utilisateur InWebo créé existe déjà dans la table, l'utilisateur sera simplement authentifié par InWebo (bien v�rifier que le mode d'authentification pour cet utilisateur est géré par InWebo)
+ - Si il n'existe pas dans la table, l'utilisateur sera d'abord créé côté WordPress, avec le mode d'authentification InWebo activé, puis authentifié
+
+== Test de l'authentification ==
+
+Avant de tester l'accès à votre site via l'extension de navigateur InWebo, vérifiez que le login de votre utilisateur dans la console d'administration InWebo correspond au login de l'utilisateur avec lequel vous souhaitez vous connectez dans votre CMS.
+Si vous êtes le premier administrateur du service InWebo, par défaut votre login InWebo est "_admin". Vous devrez le changer pour le faire correspondre au login WordPress approprié.
+Exemple: si vous souhaitez vous authentifier avec le login "test" avec InWebo, modifiez "_admin_" en "test" dans la console d'administration InWebo.
+
+== Foire Aux Questions ==
+
+Visitez la FAQ In-Webo ici : http://faq.inwebo.com/fr
+
+== Changelog ==
+
+= 1.2.1 =
+
+ * enhanced management of In-Webo users auto provisioning
+
+= 1.2.0 =
+
+ * adding option to allow In-Webo users auto provisioning
+
+= 1.1.1 =
+
+ * minor upgrades & bug fixes
+
+= 1.1.0 =
+
+* adding plugin administration panel to WordPress administration
+
+= 1.0.0 =
+
+ * first version
